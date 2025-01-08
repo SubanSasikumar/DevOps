@@ -1,0 +1,46 @@
+pipeline {
+agent any
+parameters {
+string(name: 'NAME', description: 'Please tell me your name')
+choice(name: 'POSITION', choices: ['Manager', 'Dev', 'Director'], description: 'Choose Postiton')
+text(name: 'DESCRIPTION', description: 'Please describe the work')
+booleanParam(name: 'APPROVE', description: 'Approve by boss ?')
+password(name: 'PWD', description: 'Enter password')
+}
+stages {
+    stage('Printing name') {
+        steps {
+            script {
+                def name = "${params.NAME}"
+                def position = "${params.POSITION}"
+                def description = "${params.DESCRIPTION}"
+                def approve = "${params.APPROVE}"
+                def pwd = "${params.PWD}"
+                echo " Voici les parametres du pipeline  "
+                echo "  - Name =  $name"
+                echo "  - Position =  $position"
+                echo "  - Description =  $description"
+                echo "  - Approve =  $approve"
+                echo "  - PWD =  $pwd"
+                
+            }
+        }
+    }
+   
+    stage('BUILD') {
+            steps {
+                echo 'Developpement'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing'
+            }
+        }
+        stage('DEPLOY') {
+            steps {
+                echo 'Mise en Production'
+            }
+        }
+    }
+}
