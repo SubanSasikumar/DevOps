@@ -1,85 +1,102 @@
 pipeline {
 agent any
-stages:         
-  - build
-  - test
-  - deploy
+stages {
+  stage('Build') {
+    stage('Check de la Coque') {
+      steps {
+        echo "Checking de la coque"
+        sleep 10
+        echo "Integrité de la coque à 100%"
+      }
+    }
 
-check-de-la-coque:       
-  stage: build
-  script:
-    - echo "Checking de la coque"
-    - sleep 10
-    - echo "Integrité de la coque à 100%"
+    stage('verification carburant') {
+      steps {
+        echo "Verification du niveau de carburant"
+        sleep 10
+        echo "Réservoir rempli à 74%"
+      }
+    }
 
-verification-electronique:   
-  stage: test    
-  script:
-    - echo "Verification des systemes l'electroniques"
-    - sleep 10
-    - echo "Integrite du systeme electronique à 100%"
+    stage('verification propulseur') {
+      steps {
+        echo "Verification de l'integrite des propulseurs"
+        sleep 10
+        echo "Propuleseurs intactes"
+      }
+    }
+  }
 
-verification-carburant:   
-  stage: build    
-  script:
-    - echo "Verification du niveau de carburant"
-    - sleep 10
-    - echo "Réservoir rempli à 74%"
+  stage('Test') {
 
-verification-propulseur:     
-  stage: build  
-  environment: production
-  script:
-    - echo "Verification de l'integrite des propulseurs."
-    - sleep 10
-    - echo "Propuleseurs intactes"
+    stage('verification elec') {
+      steps {
+        echo "Verification des systemes l'electroniques"
+        sleep 10
+        echo "Integrite du systeme electronique à 100%"
+      }
+    }
 
-verification-equipement-nav:   
-  stage: test    
-  script:
-    - echo "Verification des équipement de navigation"
-    - sleep 10
-    - echo "Léger disfonctionnement de la carte numerique"    
+    stage('verification equipement nav') {
+      steps {
+        echo "Verification des équipement de navigation"
+        sleep 10
+        echo "Léger disfonctionnement de la carte numerique"    
+      }
+    }
 
-verification-equipement-sec:   
-  stage: deploy   
-  script:
-    - echo "Verification de l'integrite des equipements de secours"
-    - sleep 10
-    - echo "Equipements de secours ok"        
+    stage('verification vitesse') {
+      steps {
+        echo "Verification de la vitesse"
+        sleep 10
+        echo "Test de vitesse ok. "           
+      }
+    }
 
-verification-communication:   
-  stage: deploy    
-  script:
-    - echo "Verification des equipements de communication"
-    - sleep 10
-    - echo "Test radio ok. "    
+    stage('verification trajectoire') {
+      steps {
+        echo "Verification des equipements de trajectoire"
+        sleep 10
+        echo "Test trajectoire ok. "        
+      }
+    }
 
-verification-vitesse:   
-  stage: test    
-  script:
-    - echo "Verification de la vitesse"
-    - sleep 15
-    - echo "Test de vitesse ok. "    
+    stage('verification altitude') {
+      steps {
+        echo "Verification des equipements de altitude"
+        sleep 10
+        echo "Test altitude ok. "        
+      }
+    }
+  }
 
-verification-trajectoire:   
-  stage: test    
-  script:
-    - echo "Verification de la trajectoire"
-    - sleep 10
-    - echo "trajectoire ok. "    
+  stage('Deploy') {
+    stage('verification elec') {
+      steps {
+        echo "Verification des systemes l'electroniques"
+        sleep 10
+        echo "Integrite du systeme electronique à 100%"
+      }
+    }
+    stage('verification communication') {
+      steps {
+        echo "Verification des equipements de communication"
+        sleep 10
+        echo "Test radio ok. "        
+      }
+    }
+    stage('verification train') {
+      steps {
+        echo "Verification des equipements de train"
+        sleep 10
+        echo "Test radio ok. "        
+      }
+    }
+  }
 
-verification-altitude:   
-  stage: test    
-  script:
-    - echo "Verification de l'altitude"
-    - sleep 10
-    - echo "Test altitude ok. "    
+}   
 
-verification-train:  
-  stage: deploy   
-  script:
-    - echo "Verification du déploiement du train d'atterissage"
-    - sleep 10
-    - echo "Train sorti. "    
-}
+ 
+
+   
+
