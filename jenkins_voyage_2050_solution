@@ -86,4 +86,11 @@ pipeline {
                 stage('Verification Train') {
                     steps {
                         echo "Vérification du train d'atterrissage"
-      
+                        sleep 10
+                        echo "Train d'atterrissage OK"        
+                    }
+                }
+            }
+        }
+    }
+}
