@@ -1,0 +1,29 @@
+pipeline {
+    /* Qui peut lancer le pipeline */
+    agent any
+
+    /* Toutes les étapes du CI/CD */
+    stages {
+        stage('HELLO') {
+            /* Peut ajouter plusieurs étapes */
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('BUILD') {
+            steps {
+                echo 'Developpement'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing'
+            }
+        }
+        stage('DEPLOY') {
+            steps {
+                echo 'Mise en Production'
+            }
+        }
+    }
+}
