@@ -47,11 +47,11 @@ pipeline {
                     }
                 }
 
-                stage('Verification Vitesse') {
+                stage('Verification Equipement Sec') {
                     steps {
-                        echo "Vérification de la vitesse"
+                        echo "Verification de l'integrite des equipements de secours"
                         sleep 10
-                        echo "Test de vitesse OK"           
+                        echo "Equipements de secours OK"           
                     }
                 }
 
